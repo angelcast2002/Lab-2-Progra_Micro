@@ -4,8 +4,8 @@
 * DEPARTAMENTO DE CIENCIA DE LA COMPUTACIÓN
 *
 * Curso:       CC3086 - Programación de microprocesadores     Ciclo II - 2022
-* Descripción: Generar 10 números aleatoriamiente
-* Autor:       Martin Cruz 09/2012. Obtener numeros aleatorios en C++ 
+* Descripción: Generar n cantidad de numeros aleatorios y sumar la primera mitad con 1 hilo, la segunda mitad la debe sumar otro hilo
+* Autor:       Angel Castellanos 21700 
 ------------------------------------------------------------------------------*/
 
 #include <stdlib.h>
@@ -18,6 +18,7 @@
 
 #define NTHREADS 2
 using namespace std;
+//Declaro las variables globales que seran necesarias para los hilos
 int tamanoArray;
 int *numerosAleatoreos = new int[tamanoArray];
 int medioArray;
@@ -31,13 +32,14 @@ void *sumar_Array(void *threadNumber){
 
     int suma = 0;
 
-
+    //Si el tID es 0 significa que es el hilo 1 por lo que suma la 1ra mitad del array
     if(tID == 0){
         for (int i = 0; i < medioArray; ++i) {
             suma += numerosAleatoreos[i];
         }
     }
 
+    //Si el tID es 1 significa que es el hilo 2 por lo que suma la 2da mitad del array
     else{
         for (int i = medioArray; i < tamanoArray; ++i) {
             suma += numerosAleatoreos[i];

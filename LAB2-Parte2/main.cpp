@@ -18,6 +18,7 @@
 #include <iostream>
 //#include <stdlib>
 using namespace std;
+//Se crea la struct
 struct infoUsuarios{
     string nombre;
     string apellido;
@@ -33,6 +34,7 @@ int main(){
     for(int i=0; i<NoUsuarios; i++){
         //Para vaciar buffer y permitir digitar valores
         fflush(stdin);
+        //Se piden los datos a almacenar
         printf("\n ---Ingresando el usuario %d ---", i);
         cout << "\nDigite Nombre: " << endl;
         cin >> infoUsuarios[i].nombre;
@@ -47,6 +49,7 @@ int main(){
         cout << "\n";
     }
 
+    //Se ordena el array de manera ascendente en base al ultimo digito de CUI y se imprime
     for (int i = 1; i<10; i++) {
         for (int j = 0; j < NoUsuarios; ++j) {
             if (infoUsuarios[j].ultimoNcui == i){
