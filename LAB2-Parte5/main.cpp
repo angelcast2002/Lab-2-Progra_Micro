@@ -26,7 +26,7 @@ using namespace std;
 int velocidad;
 int tiempo;
 int distancia;
-int contador = 25;
+int contador = 50;
 
 
 
@@ -120,7 +120,7 @@ int main()
 
     // Modificar el atributo especifico
     // en este caso el atributo setdetachstate = JOINABLE
-    pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_JOINABLE);
+    pthread_attr_setdetachstate(&attr, PTHREAD_CREATE_DETACHED);
 
     // Crear el hilo
     rc = pthread_create(&tid, &attr, funTiempo, (void *)i);
