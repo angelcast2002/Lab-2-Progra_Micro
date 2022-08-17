@@ -6,6 +6,7 @@
 * Curso:       CC3086 - Programación de microprocesadores     Ciclo II - 2022
 * Descripción: Generar n cantidad de numeros aleatorios y sumar la primera mitad con 1 hilo, la segunda mitad la debe sumar otro hilo
 * Autor:       Angel Castellanos 21700 
+* Se probo con: visual studio code y gcc
 ------------------------------------------------------------------------------*/
 
 #include <stdlib.h>

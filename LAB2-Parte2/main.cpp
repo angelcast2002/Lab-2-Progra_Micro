@@ -11,6 +11,7 @@
 *------------------------------------------
 * Descripción: Lab 2 Parte
 * Autor:       Angel Castellanos 21700 
+* Se probo con: visual studio code y gcc
 *------------------------------------------
 */
 #include <pthread.h>

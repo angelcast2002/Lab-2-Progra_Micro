@@ -10,6 +10,7 @@
 *              3. Cada x distancia mostrar un mensaje con la distancia recorrida.
 *
 * Autor:       Angel Castellanos 21700 
+* Se probo con: visual studio code y gcc
 ------------------------------------------------------------------------------*/
 
 #include <stdlib.h>
