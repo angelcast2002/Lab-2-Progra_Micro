@@ -10,6 +10,7 @@
 *
 *------------------------------------------
 * Descripción: Lab 2 Parte
+* Autor:       Angel Castellanos 21700 
 *------------------------------------------
 */
 #include <pthread.h>
