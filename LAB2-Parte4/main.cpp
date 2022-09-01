@@ -19,6 +19,7 @@
 
 #define NTHREADS 2
 using namespace std;
+
 //Declaro las variables globales que seran necesarias para los hilos
 int tamanoArray;
 int *numerosAleatoreos = new int[tamanoArray];
@@ -27,23 +28,23 @@ int medioArray;
 
 
 void *sumar_Array(void *threadNumber){
-    long tID;
+    int tID;
     // Casting del parametro tipo void a la variable local tipo long
-    tID = (long long)threadNumber;
+    tID = *(int *)threadNumber;
 
     int suma = 0;
 
     //Si el tID es 0 significa que es el hilo 1 por lo que suma la 1ra mitad del array
     if(tID == 0){
         for (int i = 0; i < medioArray; ++i) {
-            suma += numerosAleatoreos[i];
+            suma = suma + numerosAleatoreos[i];
         }
     }
 
     //Si el tID es 1 significa que es el hilo 2 por lo que suma la 2da mitad del array
     else{
         for (int i = medioArray; i < tamanoArray; ++i) {
-            suma += numerosAleatoreos[i];
+            suma = suma + numerosAleatoreos[i];
         }
     }
 
@@ -55,6 +56,7 @@ void *sumar_Array(void *threadNumber){
 
 int main()
 {
+    srand(time(NULL));
     cout << "Ingrese la cantidad de numeros a generar: " << endl;
     tamanoArray;
     cin >> tamanoArray;
@@ -63,13 +65,13 @@ int main()
     cout << "Los numeros aleatoreos son:" << endl;
     for (int i = 0; i < tamanoArray; i++)
     {
-        numerosAleatoreos[i] = rand() % 100;
+        numerosAleatoreos[i] = 1 + rand() % (11 - 1);
         cout << i << " - " << numerosAleatoreos[i] << endl;
 
     }
 
-    int rc;
-    long i;
+    int rc = 0;
+    int i;
     // Declarar una variable tipo pthread_t
     pthread_t tid;
 
@@ -88,17 +90,18 @@ int main()
 
     for (i=0; i<NTHREADS; i++) {
 
-        rc = pthread_create(&tid, &attr, sumar_Array, (void *)i);
+        int v = (int)i;
+        rc = pthread_create(&tid, &attr, sumar_Array, (void *)&v);
 
         // La variable rc recibe errores en formato entero
-        if (rc) {
+        if (rc != 0) {
             printf("ERROR; return code from pthread_create() is %d\n", rc);
             exit(-1);
         }
 
         // Esperar a que cada thread termine en orden
         rc = pthread_join(tid, NULL);
-        if (rc) {
+        if (rc != 0) {
             printf("ERROR; return code from pthread_join() is %d\n", rc);
             exit(-1);
         }
